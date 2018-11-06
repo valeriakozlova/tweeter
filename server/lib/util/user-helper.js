@@ -13,6 +13,8 @@ module.exports = {
     const lastName  = chance.last();
     const userName  = firstName + " " + lastName;
 
+console.log(gender);
+
     let userHandle = "@";
     if (Math.random() > 0.5) {
       let prefix    = chance.prefix({gender: gender});
