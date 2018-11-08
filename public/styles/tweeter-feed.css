@@ -1,0 +1,53 @@
+.tweet {
+  border: 1px solid gray;
+  border-radius: 7px;
+  background-color: white;
+  opacity: 0.7;
+  }
+
+article.tweet header {
+  background-color: #EFECEC;
+  height: 70px;
+  border-radius: 7px;
+}
+
+article.tweet footer {
+  border-top: 1px solid #EFECEC;
+  height: 40px;
+}
+
+article.tweet p {
+  height: 50px;
+  margin-left: 10px;
+}
+
+img {
+  border-radius: 5px;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.UserName {
+  margin-left: 20px;
+  margin-top: 0px;
+  padding-top: 25px;
+  float: left;
+}
+
+.handle {
+  float: right;
+  margin-right: 10px;
+  margin-top: 25px;
+}
+
+.CreationDate {
+  float: left;
+  margin-left: 10px;
+  font-size: small;
+  margin-top: 10px;
+}
+
+.tweet:hover {
+  opacity: 1;
+}
