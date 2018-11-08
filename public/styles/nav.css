@@ -1,11 +1,12 @@
 #nav-bar {
   position: fixed;
-  height: 80px;
+  height: 100px;
   width: 100%;
-  background-color: #00a087;
-  color: #e8fdff;
+  background-color: white;
+  color: black;
   padding: 0em 2em 0em 2em;
   top: 0px;
+  z-index: 1
 }
 
 #nav-bar .logo {
@@ -17,7 +18,23 @@
 
 #nav-bar .header {
   float: left;
-  margin-left: 5px;
+  margin-left: 10px;
+  margin-top: 5px;
   font-size: 2rem;
   line-height: 250%;
+}
+
+#nav-bar .button {
+  float: right;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid gray;
+}
+
+#nav-bar .button:hover {
+  opacity: 0.5;
 }
