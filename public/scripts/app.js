@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+//prevents people from using script on your website
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -10,7 +11,7 @@ $(document).ready(function() {
 
   function createTweetElement(tweet) {
 //add margin in CSS
-    return `<br>
+    return `
       <article class="tweet">
         <header>
           <img src="${tweet.user.avatars.small}" alt="avatar">
@@ -24,42 +25,53 @@ $(document).ready(function() {
         </article>`;
   }
 
-
-//you can append the child
   function renderTweets(tweets) {
     for (let tweet of tweets) {
-      $('.container').append(createTweetElement(tweet));
-      // $('.container').prepend(createTweetElement(tweet));
+      $('.tweet-feed-container').prepend(createTweetElement(tweet));
     }
   }
 
   function loadTweets () {
     $.ajax({ url: '/tweets', method: 'GET', dataType: "json"})
-    .then(function (serverResponse) {
-      renderTweets(serverResponse);
+    .done(function (serverResponse, status, response) {
+      if (response.status === 500) {
+        console.log(serverResponse);
+      } else {
+        renderTweets(serverResponse);
+      }
     });
   }
 
   $('form').on('submit', function () {
     event.preventDefault();
     let formInput = $('.new-tweet textarea').val().length;
+    //add a function that returns true or false
     if (formInput === 0) {
       $('.error').html("You didn't enter anything").slideDown("slow");
     } else if (formInput > 140) {
       $('.error').html("You've reached the maximum amount of characters").slideDown("slow");
     } else {
       $('.error').slideUp("slow");
-      $.ajax({ type: 'POST', url: '/tweets', data: $( this ).serialize(), complete: loadTweets })
-      .then(function (serverResponse) {
-        console.log('Success: ', serverResponse);
+      $.ajax({ type: 'POST', url: '/tweets', data: $( this ).serialize()})
+      .then(function (serverResponse, status, response) {
+        if(response.status === 201) {
+          $('.tweet-feed-container').prepend(createTweetElement(serverResponse));
+          console.log('Success: ', serverResponse);
+        } else {
+          console.log(serverResponse)
+        }
       });
     }
   });
 
   $( "button" ).click(function() {
-  $( ".new-tweet" ).slideToggle( "slow" );
-  $( ".new-tweet textarea" ).focus();
+    $( ".new-tweet" ).slideToggle( "slow" );
+    $( ".new-tweet textarea" ).focus();
   });
+
+  $(".new-tweet").hide();
+
+  loadTweets();
 
 });
 
