@@ -15,18 +15,6 @@ html {
 
 }
 
-
-
-/*
- * Global layout stuff
- */
-
-
-/*Update the layout.css by specifying this as the font that applies to everything in the body.
-How can you specify this in one place, ie without having to select every single possible element/tag that can ever exist on a web page?
-Don't forget to have the browser degrade to sans-serif (which is available in all browsers) if it can't load the correct font.
-*/
-
 body {
   margin: 0;
   color: #244751;
