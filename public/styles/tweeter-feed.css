@@ -3,12 +3,14 @@
   border-radius: 7px;
   background-color: white;
   opacity: 0.7;
+  margin-bottom: 10px;
   }
 
 article.tweet header {
   background-color: #EFECEC;
   height: 70px;
-  border-radius: 7px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 
 article.tweet footer {
@@ -28,7 +30,7 @@ img {
   margin-top: 10px;
 }
 
-.UserName {
+.user-name {
   margin-left: 20px;
   margin-top: 0px;
   padding-top: 25px;
@@ -41,7 +43,7 @@ img {
   margin-top: 25px;
 }
 
-.CreationDate {
+.creation-date {
   float: left;
   margin-left: 10px;
   font-size: small;

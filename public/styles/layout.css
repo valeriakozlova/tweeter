@@ -15,55 +15,19 @@ html {
 
 }
 
-
-
-/*
- * Global layout stuff
- */
-
-
-/*Update the layout.css by specifying this as the font that applies to everything in the body.
-How can you specify this in one place, ie without having to select every single possible element/tag that can ever exist on a web page?
-Don't forget to have the browser degrade to sans-serif (which is available in all browsers) if it can't load the correct font.
-*/
-
 body {
   margin: 0;
   color: #244751;
-  background-color: #eee;
+  background-color: #5D7B9C;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 main {
   width: 450px;
-  background: white;
   margin-left: auto;
   margin-right: auto;
   margin-top: 140px;
 }
 
-.new-tweet {
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: gainsboro;
-  }
 
-.new-tweet h2 {
-  border-bottom: 1px solid black;
-  margin-top: 10px;
-}
-
-.counter {
-  float: right;
-}
-
-
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
 
