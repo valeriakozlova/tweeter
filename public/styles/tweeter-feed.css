@@ -1,5 +1,3 @@
-/*//why is my top header doesn't have a radius*/
-
 .tweet {
   border: 1px solid gray;
   border-radius: 7px;
@@ -32,9 +30,7 @@ img {
   margin-top: 10px;
 }
 
-/*all names should be small*/
-
-.UserName {
+.user-name {
   margin-left: 20px;
   margin-top: 0px;
   padding-top: 25px;
@@ -47,9 +43,7 @@ img {
   margin-top: 25px;
 }
 
-/*eg. creation-date*/
-
-.CreationDate {
+.creation-date {
   float: left;
   margin-left: 10px;
   font-size: small;

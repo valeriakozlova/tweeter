@@ -15,12 +15,12 @@ $(document).ready(function() {
       <article class="tweet">
         <header>
           <img src="${tweet.user.avatars.small}" alt="avatar">
-          <div class="UserName">${tweet.user.name}</div>
+          <div class="user-name">${tweet.user.name}</div>
           <div class="handle">${tweet.user.handle}</div>
         </header>
         <p>${escape(tweet.content.text)}</p>
         <footer>
-          <div class="CreationDate">${jQuery.timeago(tweet.created_at)}</div>
+          <div class="creation-date">${jQuery.timeago(tweet.created_at)}</div>
         </footer>
         </article>`;
   }
