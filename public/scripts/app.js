@@ -56,6 +56,17 @@ $(document).ready(function() {
     return div.innerHTML;
   }
 
+  function createdAt(timestamp) {
+    let daysAgo = Math.round((Date.now() - timestamp) / (24*60*60*1000));
+    if (daysAgo === 0) {
+      return "Today";
+    } else if (daysAgo === 1) {
+      return `${daysAgo} day ago`;
+    } else {
+      return `${daysAgo} days ago`;
+    }
+  }
+
   function createTweetElement(tweet) {
 //add margin in CSS
     return `<br>
@@ -67,7 +78,7 @@ $(document).ready(function() {
         </header>
         <p>${escape(tweet.content.text)}</p>
         <footer>
-          <div class="CreationDate">${tweet["created_at"]}</div>
+          <div class="CreationDate">${createdAt(tweet["created_at"])}</div>
         </footer>
         </article>`;
   }
