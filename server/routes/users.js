@@ -30,40 +30,40 @@ usersRoutes.post("/register", function(req, res) {
   const userID = generateRandomString();
 
     const user = {
-      "name": req.body.name,
-      "id": userID,
-      "avatars": {
-          "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-          "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-          "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": req.body.handle,
-      "email": req.body.email,
-      "password": req.body.password
+      userID : {
+        "name": req.body.name,
+        "avatars": {
+            "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+            "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+            "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+        },
+        "handle": req.body.handle,
+        "password": req.body.password
+      }
     }
 
     DataHelpers.saveUser(user, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        req.session.user_id = req.body.name;
-
+        req.session.user_id = userID;
         res.status(201).redirect("/");
       }
     });
   });
 
  usersRoutes.post("/login", function(req, res) {
-
+  console.log("the login routes", req.body);
   if (!req.body.email || !req.body.password) {
     res.status(400).json({ error: 'All fields must be filled in'});
     return;
   }
-    DataHelpers.getUsers((err, user) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
+    DataHelpers.getUser(req.body.email, (user) => {
+      console.log("returned usre", user);
+      if (!user) {
+        res.status(500).json({ error:"User not found" });
       } else {
-        res.json(users);
+        res.status(201).json(user);
       }
     });
   });
