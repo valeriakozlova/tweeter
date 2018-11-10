@@ -23,7 +23,27 @@ module.exports = function makeDataHelpers(db) {
           }
           callback(null, tweets);
         });
-      }
-    };
+      },
 
+    //Saves a user to `db`
+    saveUser: function(newUser, callback) {
+      db.collection("users").insertOne(newUser, function(err) {
+        if (err) {
+          return callback(err);
+        }
+        callback(null);
+      });
+    },
+
+    // Get all users in "db"
+    getUsers: function(callback) {
+        db.collection("users").find().toArray((err, users) => {
+          if (err) {
+            return callback(err);
+          }
+          callback(null, users);
+        });
+    }
+
+  }
 }

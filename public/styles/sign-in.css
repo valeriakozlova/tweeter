@@ -1,0 +1,29 @@
+.sign-in h2 {
+  font-size: 50px;
+}
+
+.sign-up h2 {
+  font-size: 50px;
+}
+
+.entry {
+  margin-bottom: 5px;
+}
+
+.sign-in .button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid gray;
+}
+
+.sign-up .button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid gray;
+}

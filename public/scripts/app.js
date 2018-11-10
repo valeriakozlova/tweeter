@@ -42,7 +42,8 @@ $(document).ready(function() {
     });
   }
 
-  $('form').on('submit', function () {
+  $('.new-tweet form').on('submit', function () {
+    console.log("created a new tweet")
     event.preventDefault();
     let formInput = $('.new-tweet textarea').val().length;
     //add a function that returns true or false
@@ -58,11 +59,12 @@ $(document).ready(function() {
           $('.tweet-feed-container').prepend(createTweetElement(serverResponse));
           console.log('Success: ', serverResponse);
         } else {
-          console.log(serverResponse)
+          console.log(serverResponse);
         }
       });
     }
   });
+
 
   $( "button" ).click(function() {
     $( ".new-tweet" ).slideToggle( "slow" );

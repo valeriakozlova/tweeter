@@ -39,15 +39,3 @@ function getTweets(callback) {
 
 });
 
-
-// you'd define getTweets in one place and call it somewhere else entirely
-//(probably a different file).
-// What's important is that the connected db is in scope when getTweets is defined
-// it doesn't matter about when it's called, because it's a closure.
-
-// Using the Cursor rather than slurping data into an array would be better in some cases if
-// you had a ton of data. For our purposes right now, it's not worth the bother.
-
-// It's better to let the "end user" code deal with errors unless you are able to do something
-// useful to recover from it.
-// This callback is entirely pointless if you think about it:
