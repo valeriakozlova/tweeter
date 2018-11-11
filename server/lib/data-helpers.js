@@ -45,9 +45,9 @@ module.exports = function makeDataHelpers(db) {
         });
     },
 
-    getUser: function(email, callback) {
-      console.log("email:",  email);
-      db.collection("users").findOne({email: email}).then((user) => {
+    getUser: function(handle, callback) {
+      console.log("handle:",  handle);
+      db.collection("users").findOne({handle: handle}).then((user) => {
         console.log("Retrieved user", user);
         callback(user);
       });

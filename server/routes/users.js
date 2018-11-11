@@ -2,70 +2,73 @@
 
 const userHelper    = require("../lib/util/user-helper")
 const express       = require('express');
-const usersRoutes  = express.Router();
+const usersRoutes   = express.Router();
+const bcrypt        = require('bcrypt');
+const cookieSession = require('cookie-session');
 
 module.exports = function(DataHelpers) {
 
-usersRoutes.post("/register", function(req, res) {
+  usersRoutes.post("/register", function(req, res) {
 
-  console.log(req.body);
-
-   if (!req.body.name || !req.body.handle || !req.body.email || !req.body.password) {
+    if (!req.body.name || !req.body.handle || !req.body.password) {
       res.status(400).json({ error: 'All fields must be filled in'});
       return;
     }
 
-//need to make sure the user hasn't previously been registered
-//need to add encrypted password
-
-  function generateRandomString () {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
-    let randomString = "";
-    for (let i = 0; i < 6; i++) {
-      randomString += alphabet[Math.floor(Math.random()*36)];
-    }
-    return randomString;
-  }
-
-  const userID = generateRandomString();
+    DataHelpers.getUser(req.body.handle, (user) => {
+      if (user) {
+        res.status(400).json({ error:"You already have an account with us or the handle is already taken" });
+        return;
+      }
+    });
 
     const user = {
-      userID : {
-        "name": req.body.name,
-        "avatars": {
-            "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-            "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-            "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-        },
-        "handle": req.body.handle,
-        "password": req.body.password
-      }
+      "name": req.body.name,
+      "avatars": {
+        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+      },
+      "handle": req.body.handle,
+      "password": bcrypt.hashSync(req.body.password, 10)
     }
 
     DataHelpers.saveUser(user, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        req.session.user_id = userID;
+        req.session.user_id = req.body.handle;
         res.status(201).redirect("/");
       }
     });
+
   });
 
- usersRoutes.post("/login", function(req, res) {
-  console.log("the login routes", req.body);
-  if (!req.body.email || !req.body.password) {
-    res.status(400).json({ error: 'All fields must be filled in'});
-    return;
-  }
-    DataHelpers.getUser(req.body.email, (user) => {
-      console.log("returned usre", user);
+  usersRoutes.post("/login", function(req, res) {
+
+    if (!req.body.handle || !req.body.password) {
+      res.status(400).json({ error: 'All fields must be filled in'});
+      return;
+    }
+
+    DataHelpers.getUser(req.body.handle, (user) => {
       if (!user) {
         res.status(500).json({ error:"User not found" });
+      } else if (bcrypt.compareSync(req.body.password, user.password)) {
+        req.session.user_id = req.body.handle;
+        res.status(201).redirect("/");
       } else {
-        res.status(201).json(user);
+        res.status(400).json({ error:"Incorrect password"})
       }
     });
+
+  });
+
+  usersRoutes.post("/logout", function(req, res) {
+
+    req.session = null;
+    res.status(201).redirect("/");
+
   });
 
   return usersRoutes;

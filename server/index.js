@@ -6,7 +6,9 @@ const bodyParser    = require("body-parser");
 const app           = express();
 const {MongoClient} = require("mongodb");
 const MONGODB_URI   = "mongodb://localhost:27017/tweeter";
-const cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session');
+const bcrypt        = require('bcrypt');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -17,6 +19,7 @@ app.use(cookieSession({
 }));
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
+
   if (err) {
     console.error(`Failed to connect: ${MONGODB_URI}`);
     throw err;
