@@ -7,6 +7,7 @@ const tweetsRoutes  = express.Router();
 module.exports = function(DataHelpers) {
 
   tweetsRoutes.get("/", function(req, res) {
+
     DataHelpers.getTweets((err, tweets) => {
       if (err) {
         res.status(500).json({ error: err.message });
@@ -14,9 +15,11 @@ module.exports = function(DataHelpers) {
         res.json(tweets);
       }
     });
+
   });
 
   tweetsRoutes.post("/", function(req, res) {
+
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;

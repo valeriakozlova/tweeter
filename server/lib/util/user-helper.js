@@ -1,5 +1,7 @@
 "use strict";
 
+//This script generates a random user while the registration feature is in production
+
 const Chance = require("chance");
 const chance = new Chance();
 

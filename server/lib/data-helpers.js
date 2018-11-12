@@ -1,12 +1,12 @@
 "use strict";
 
-// Defines helper functions for saving and getting tweets, using the database `db`
+// Defines helper functions for saving and getting tweets and users, using the database `db`
 module.exports = function makeDataHelpers(db) {
+
   return {
 
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
-
       db.collection("tweets").insertOne(newTweet, function(err) {
         if (err) {
           return callback(err);
@@ -35,16 +35,7 @@ module.exports = function makeDataHelpers(db) {
       });
     },
 
-    // Get all users in "db"
-    getUsers: function(callback) {
-        db.collection("users").find().toArray((err, users) => {
-          if (err) {
-            return callback(err);
-          }
-          callback(null, users);
-        });
-    },
-
+    // Find a user in "db"
     getUser: function(handle, callback) {
       console.log("handle:",  handle);
       db.collection("users").findOne({handle: handle}).then((user) => {

@@ -1,8 +1,8 @@
-//Defind these functions outside and call them when the docs are ready
+//To do: defind these functions outside of doc ready and call them when the doc is ready
 
 $(document).ready(function() {
 
-//prevents people from using script on your website
+//Prevents people from using script on your website
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -10,7 +10,6 @@ $(document).ready(function() {
   }
 
   function createTweetElement(tweet) {
-//add margin in CSS
     return `
       <article class="tweet">
         <header>
@@ -46,7 +45,7 @@ $(document).ready(function() {
     console.log("created a new tweet")
     event.preventDefault();
     let formInput = $('.new-tweet textarea').val().length;
-    //add a function that returns true or false
+    //Add a function that returns true or false
     if (formInput === 0) {
       $('.error').html("You didn't enter anything").slideDown("slow");
     } else if (formInput > 140) {
@@ -65,12 +64,12 @@ $(document).ready(function() {
     }
   });
 
-
   $( "button" ).click(function() {
     $( ".new-tweet" ).slideToggle( "slow" );
     $( ".new-tweet textarea" ).focus();
   });
 
+  //The new tweet area is hidden until called upon
   $(".new-tweet").hide();
 
   loadTweets();

@@ -36,8 +36,6 @@ const users = [
   }
 ];
 
-//new version of the database
-
 
 var tweets = [
   {

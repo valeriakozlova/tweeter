@@ -1,4 +1,4 @@
-//what is $(this) excactly?? and object??
+// This code checks the word count and turns the counter red when when user exceeded the limit
 
 $(document).ready(function() {
   $('.new-tweet textarea').on('keyup',function(){
