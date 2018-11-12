@@ -6,7 +6,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Final Product
 
-![Screenshots of main page]()
+![Screenshots of main page](https://github.com/valeriakozlova/tweeter/blob/master/docs/tweet-box.png?raw=true)
 
 ## Getting Started
 
